@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/lab-intro-to-oop-inheritance/static/css/main.0f0c0de1.css",
-    "main.js": "/lab-intro-to-oop-inheritance/static/js/main.9b868cd3.js",
+    "main.js": "/lab-intro-to-oop-inheritance/static/js/main.5f892165.js",
     "index.html": "/lab-intro-to-oop-inheritance/index.html",
     "main.0f0c0de1.css.map": "/lab-intro-to-oop-inheritance/static/css/main.0f0c0de1.css.map",
-    "main.9b868cd3.js.map": "/lab-intro-to-oop-inheritance/static/js/main.9b868cd3.js.map"
+    "main.5f892165.js.map": "/lab-intro-to-oop-inheritance/static/js/main.5f892165.js.map"
   },
   "entrypoints": [
     "static/css/main.0f0c0de1.css",
-    "static/js/main.9b868cd3.js"
+    "static/js/main.5f892165.js"
   ]
 }
