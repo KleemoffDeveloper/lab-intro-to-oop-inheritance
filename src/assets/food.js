@@ -1,6 +1,6 @@
 // Create class below
 class Food {
-  constructor(name, daysToSpoil, fresh = true) {
+  constructor(name, daysToSpoil = 0, fresh = true) {
     this.name = name;
     this.daysToSpoil = daysToSpoil;
     this.fresh = fresh;
@@ -31,10 +31,12 @@ class BadFood extends Food {
     name,
     daysToSpoil,
     fresh,
-    weapons = [{ hitPoints: 3 }, { hitPoints: 4 }, { hitPoints: 5 }]
+    weapons = [{ hitPoints: 3 }, { hitPoints: 4 }, { hitPoints: 5 }],
+    isBlocking = false
   ) {
     super(name, daysToSpoil, fresh);
     this.weapons = weapons;
+    this.isBlocking = isBlocking;
   }
 
   prepare() {
@@ -53,34 +55,36 @@ class BadFood extends Food {
    * @param {BadFood} enemyFood
    */
   fight(enemyFood) {
-    enemyFood.daysToSpoil -= enemyFood.isBlocking
-      ? 0
-      : this.weapons[Math.floor(Math.random() * this.weapons.length)];
+    enemyFood.daysToSpoil -= (enemyFood.isBlocking ? 0 : this.weapons[Math.floor((Math.random() * this.weapons.length))].hitPoints);
     enemyFood.isBlocking = false;
 
     // We win
-    if (enemyFood.daysToSpoil < this.daysToSpoil) {
-      this.victory(this, enemyFood);
+    if (enemyFood.daysToSpoil <= 0) {
+      return this.victory(this, enemyFood);
     }
     // They win
-    else if (this.daysToSpoil < enemyFood.daysToSpoil) {
-        this.victory(enemyFood, this);
+    else if (this.daysToSpoil <= 0) {
+      return this.victory(enemyFood, this);
     }
     // Still fighting
     else {
-      console.log(
-        `${enemyFood.name} is down ${enemyFood.daysToSpoil} , but I am still up ${this.daysToSpoil} !`
-      );
+      const log = `${enemyFood.name} is down ${enemyFood.daysToSpoil} , but I am still up ${this.daysToSpoil} !`;
+      console.log(log);
+      return log;
     }
   }
 
   heal() {
+    const log = `${this.name} healed!`;
     this.daysToSpoil++;
-    console.log(`${this.name} healed!`);
+    console.log(log);
+    return log;
   }
 
   block() {
+    const log = `${this.name} is using block!`;
     this.isBlocking = true;
+    return log;
   }
 
   /**
@@ -104,7 +108,9 @@ class BadFood extends Food {
    * @param {BadFood} loser
    */
   victory(winner, loser) {
-    console.log(`${winner.name} Wins!\n${loser.name} Loses!`);
+    const log = `${winner.name} Wins!\n${loser.name} Loses!`
+    console.log(log);
+    return log;
   }
 }
 
@@ -115,4 +121,4 @@ class BadFood extends Food {
 // bagel.aDayPasses();
 
 // Do not edit below this line
-module.exports = {Food, BadFood};
+module.exports = { Food, BadFood };

@@ -1,7 +1,7 @@
 {
   "name": "oop-fruits-pets-lab-solution",
   "version": "1.0.0",
-  "description": "A lap to practice OOP",
+  "description": "A lab to practice OOP",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://kleemoffdeveloper.github.io/food-fight",
   "dependencies": {
+    "gh-pages": "^6.0.0",
     "jest": "^27.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
