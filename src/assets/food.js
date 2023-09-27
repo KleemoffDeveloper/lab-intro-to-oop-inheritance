@@ -1,5 +1,5 @@
 // Create class below
-class Food {
+export class Food {
   constructor(name, daysToSpoil = 0, fresh = true) {
     this.name = name;
     this.daysToSpoil = daysToSpoil;
@@ -26,7 +26,7 @@ class Food {
   }
 }
 
-class BadFood extends Food {
+export class BadFood extends Food {
   constructor(
     name,
     daysToSpoil,
@@ -121,4 +121,6 @@ class BadFood extends Food {
 // bagel.aDayPasses();
 
 // Do not edit below this line
-module.exports = { Food, BadFood };
+
+// commented out for React
+//module.exports = { Food, BadFood };

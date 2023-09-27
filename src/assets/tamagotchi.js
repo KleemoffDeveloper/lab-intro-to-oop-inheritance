@@ -103,4 +103,6 @@ class Tamagotchi {
 // tamagotchi.badGuardian();
 
 // Do not edit below this line
-module.exports = Tamagotchi;
+
+// commented out for React
+//module.exports = Tamagotchi;
