@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/joinpursuit/oop-fruits-pets-lab-solution/issues"
   },
-  "homepage": "https://kleemoffdeveloper.github.io/food-fight",
+  "homepage": "https://kleemoffdeveloper.github.io/lab-intro-to-oop-inheritance",
   "dependencies": {
     "gh-pages": "^6.0.0",
     "jest": "^27.5.1",
