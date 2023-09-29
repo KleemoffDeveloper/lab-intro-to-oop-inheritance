@@ -13,8 +13,40 @@ main {
   font-family: Open Sans, sans-serif;
   min-height: 100vh;
   display: grid;
+  gap: 25px;
   grid-template-rows: repeat(1fr);
   place-items: center;
+}
+
+.modal {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-auto-flow: row;
+  place-items: center;
+}
+
+.modal-banner {
+  color: black;
+  overflow: hidden;
+  border-radius: 2px;
+  display: grid;
+  grid-template-rows: 1fr 50px;
+  background-color: white;
+  width: 640px;
+  height: 320px;
+  text-align: center;
+  place-items: center;
+}
+
+.modal-banner button {
+  border: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
 }
 
 .player-select {
@@ -26,6 +58,7 @@ main {
   border-radius: 8px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   margin-top: 15px;
+  border: 1px solid gray;
 }
 
 .selection-layout .food {
@@ -37,7 +70,7 @@ main {
   gap: 10px;
   grid-auto-flow: column;
   overflow-x: scroll;
-  background-color: rgb(246, 246, 246);
+  background-color: rgb(242, 242, 242);
   border-radius: 8px;
   padding: 10px;
 }
@@ -178,5 +211,14 @@ button:active {
   .selection-layout {
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .modal-banner {
+    width: 100%;
+  }
+
+  .spacer {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }

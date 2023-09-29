@@ -32,11 +32,13 @@ export class BadFood extends Food {
     daysToSpoil,
     fresh,
     weapons = [{ hitPoints: 3 }, { hitPoints: 4 }, { hitPoints: 5 }],
-    isBlocking = false
+    isBlocking = false,
+    wonFight = false
   ) {
     super(name, daysToSpoil, fresh);
     this.weapons = weapons;
     this.isBlocking = isBlocking;
+    this.wonFight = wonFight;
   }
 
   prepare() {
@@ -96,9 +98,9 @@ export class BadFood extends Food {
     const actionMap = [this.fight, this.heal, this.block];
 
     if (action) {
-      actionMap[action];
+      return actionMap[action];
     } else {
-      actionMap[Math.floor(Math.random() * actionMap.length)];
+      return actionMap[Math.floor(Math.random() * actionMap.length)];
     }
   }
 
@@ -108,7 +110,8 @@ export class BadFood extends Food {
    * @param {BadFood} loser
    */
   victory(winner, loser) {
-    const log = `${winner.name} Wins!\n${loser.name} Loses!`
+    this.wonFight = this === winner;
+    const log = `${winner.name} Wins!\n${loser.name} Loses!`;
     console.log(log);
     return log;
   }

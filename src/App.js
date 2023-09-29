@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import badFoods from "./assets/bad-foods";
 import FoodChoice from "./components/FoodChoice";
-import { BadFood, Food } from "./assets/food";
 import Log from "./components/Log";
+import Modal from "./components/Modal";
 
 function App() {
   const [player1, setPlayer1] = useState(null);
@@ -14,9 +14,21 @@ function App() {
   // Since there are only 2 players, we can just use a boolean
   const [player1Attacking, setPlayer1Attacking] = useState(false);
 
+  const [modalMessage, setModalMessage] = useState(
+    "Player X won the food fight. Reload the page to go another round!"
+  );
+
   return (
     <div className="App">
       <main>
+        {/* This looks extremely confusing but player1 and player2
+         are null by default so the nested ternary wouldn't
+          work without the first ternary */}
+        {player1 && player2 ? (
+          player1.food.wonFight || player2.food.wonFight ? (
+            <Modal message={modalMessage} />
+          ) : null
+        ) : null}
         <div className="player-select">
           <h1>{player1 && player2 ? "Players" : "Player Select"}</h1>
           <div className="selection-layout">
@@ -71,6 +83,8 @@ function App() {
               <div className="actions">
                 <button
                   onClick={() => {
+                    if (!player1 || !player2) return;
+
                     if (player1Attacking) {
                       // Do Action
                       const action = player1.food.fight(player2.food);
@@ -84,14 +98,21 @@ function App() {
                       // Switch turn
                       setPlayer1Attacking(false);
                     }
+
+                    if (player1.food.wonFight) {
+                      setModalMessage(
+                        `${player1.food.name} (P1) won the food fight. Reload the page to go another round!`
+                      );
+                    }
                   }}
                 >
                   Fight
                 </button>
                 <button
                   onClick={() => {
+                    if (!player1 || !player2) return;
+
                     if (player1Attacking) {
-                      // Do Action
                       const action = player1.food.block();
                       console.log(action);
                       // Instantiate a new attack log
@@ -109,8 +130,9 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
+                    if (!player1 || !player2) return;
+
                     if (player1Attacking) {
-                      // Do Action
                       const action = player1.food.heal();
                       console.log(action);
                       // Instantiate a new attack log
@@ -146,8 +168,9 @@ function App() {
               <div className="actions">
                 <button
                   onClick={() => {
+                    if (!player1 || !player2) return;
+
                     if (!player1Attacking) {
-                      // Do Action
                       const action = player2.food.fight(player1.food);
                       console.log(action);
                       // Instantiate a new attack log
@@ -159,14 +182,21 @@ function App() {
                       // Switch turn
                       setPlayer1Attacking(true);
                     }
+
+                    if (player2.food.wonFight) {
+                      setModalMessage(
+                        `${player2.food.name} (P2) won the food fight. Reload the page to go another round!`
+                      );
+                    }
                   }}
                 >
                   Fight
                 </button>
                 <button
                   onClick={() => {
+                    if (!player1 || !player2) return;
+
                     if (!player1Attacking) {
-                      // Do Action
                       const action = player2.food.block();
                       console.log(action);
                       // Instantiate a new attack log
@@ -184,14 +214,15 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
+                    if (!player1 || !player2) return;
+
                     if (!player1Attacking) {
-                      // Do Action
                       const action = player2.food.heal();
                       console.log(action);
                       // Instantiate a new attack log
                       setPlayer2Log([
                         ...player2Log,
-                        { action: "Heal", text: action },
+                        { action: "Fight", text: action },
                       ]);
 
                       // Switch turn
