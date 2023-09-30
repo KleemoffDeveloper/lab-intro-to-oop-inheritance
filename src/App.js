@@ -222,7 +222,7 @@ function App() {
                       // Instantiate a new attack log
                       setPlayer2Log([
                         ...player2Log,
-                        { action: "Fight", text: action },
+                        { action: "Heal", text: action },
                       ]);
 
                       // Switch turn
